@@ -19,7 +19,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Electronics";
-    var mkdocs_page_input_path = "electronics.md";
+    var mkdocs_page_input_path = "p02-electronics.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -52,7 +52,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../chassis/">Chassis</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../p01-chassis/">Chassis</a>
                     </li>
                 </ul>
                 <ul class="current">
@@ -70,7 +70,21 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#distance-sensors">Distance sensors</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#imu">IMU</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#power">Power</a>
+    </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../p03-programming/">How to program</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../p04-cv/">Computer vision</a>
                     </li>
                 </ul>
       </div>
@@ -193,6 +207,23 @@
 <li><a href="https://diyrobocars.com/2020/01/31/how-to-add-an-encoder-to-the-donkeycar-chassis/">Setup an encoder on a chassis</a></li>
 <li><a href="https://www.allaboutcircuits.com/projects/use-an-arduino-to-control-a-motor/">Use encoder built in the motor</a></li>
 </ul>
+<h2 id="distance-sensors">Distance sensors</h2>
+<p>Distance and proximity sensors are commonly used in robotics. For the autonomous vehicle participating in the Future Engineers competition such kind of devices will allow to control the distance to the walls as so the car will move in the middle between them.</p>
+<p>Here is a set of short reviews of different sensors (ultrasonic, infrared and LiDAR) describing the principles how they work and which advantages and disadvantages they have: <a href="https://diyprojects.io/hc-sr04-ultrasound-vs-sharp-gp2y0a02yk0f-ir-vl53l0x-laser-solutions-choose-distance-measurement-arduino-raspberrypi/#.XuUorJMzZp8">1</a>, <a href="https://www.seeedstudio.com/blog/2019/12/23/distance-sensors-types-and-selection-guide/">2</a>, <a href="https://www.learnrobotics.org/blog/ir-sensor-vs-ultrasonic-sensor/">3</a>.</p>
+<h2 id="imu">IMU</h2>
+<p>IMU is an abbreviation for the term Inertial Measurement Unit. Usually, this abbreviation is used for a device that combines accelerometer, gyroscope and magnetometer. In order to get a useful data from this sensor, in most cases it is required to implement concepts from the linear algebra and calculus. But depending on the libraries provided by the sensor manufactures and/or open source community, this could be already simplified a lot as so the IMU sensor can be used to measure the path driven by the vehicle and to control steering smoothness.</p>
+<p>We provide links to three articles that are good start to understand how IMU can be used in a robotics projects: <a href="https://maker.pro/arduino/tutorial/how-to-interface-arduino-and-the-mpu-6050-sensor">1</a>, <a href="https://www.seeedstudio.com/blog/2020/01/17/what-is-imu-sensor-overview-with-arduino-usage-guide/">2</a>, <a href="https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/">3</a>.</p>
+<h2 id="power">Power</h2>
+<p>Powering of the self-driving car for the robotics competition is not a trivial task. Depending on types of the motors and number of controllers, it could be found that separate power sources must be provided for different consumers.</p>
+<p>The materials below should allow you better understand approaches that can be used to power the controllers and motors:</p>
+<ul>
+<li>How to power the Arduino board: <a href="https://thepihut.com/blogs/raspberry-pi-tutorials/how-do-i-power-my-arduino">1</a>, <a href="https://technobyte.org/2016/07/power-up-the-arduino-uno/">2</a></li>
+<li><a href="https://thepihut.com/blogs/raspberry-pi-tutorials/how-do-i-power-my-raspberry-pi">How to power Raspberry Pi</a></li>
+<li><a href="https://learn.adafruit.com/adafruit-motor-shield-v2-for-arduino/powering-motors">Powering Motors with Arduino</a></li>
+<li><a href="https://www.quora.com/Can-I-power-a-motor-driver-and-Arduino-with-separate-power-banks-I-am-using-two-12-V-motors">Important note about the ground sharing</a></li>
+<li><a href="https://www.quora.com/Can-we-use-Arduino-Uno-and-4-DC-motors-with-a-power-bank-to-power-a-Bluetooth-robot">Usage a power bank with Arduino and Motors</a></li>
+<li><a href="https://dronebotworkshop.com/powering-your-projects/">Additional info to power the project</a></li>
+</ul>
               
             </div>
           </div>
@@ -200,8 +231,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../p03-programming/" class="btn btn-neutral float-right" title="How to program">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../chassis/" class="btn btn-neutral" title="Chassis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../p01-chassis/" class="btn btn-neutral" title="Chassis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -227,8 +260,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../chassis/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../p01-chassis/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../p03-programming/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
