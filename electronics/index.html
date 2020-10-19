@@ -60,6 +60,16 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#design-leading-questions">Design leading questions</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vehicles-brain">Vehicle's brain</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motors">Motors</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#encoders">Encoders</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -96,7 +106,7 @@
             <div class="section">
               
                 <h1 id="electromechanical-components">Electromechanical components</h1>
-<p>Here is materials that aimed to help understand how to make the vehicle is smarter than an RC toy.</p>
+<p>Here are materials that aimed to help understand how to make the vehicle is smarter than an RC toy.</p>
 <h2 id="design-leading-questions">Design leading questions</h2>
 <p>Definitely, the obstacles detection and decision making for the motion planning must be done ad-hoc by en electronic brain rather than by a human being. That's why it is needed to choose the set of controllers, electronic components and design the logic to connect them to each other. They will mostly rely on the way how the vehicle will solve the task. But some ideas will be common due to the nature of the challenge.</p>
 <p>Here is the set of questions that is intended to boost the process of thinking about electronic filling of the autonomous car:</p>
@@ -126,6 +136,63 @@
 <p>What kind of power sources should be used to supply controllers, motors and senors? Should it be one source for all consumers or dedicated sources for controllers and motors?</p>
 </li>
 </ol>
+<h2 id="overview">Overview</h2>
+<p>Before start drawing schemes and purchasing the components, usually it is worth to review existing solutions: what electromechanical components are the common practice to use for the robotics projects where the aim is to create a self-driving vehicle.</p>
+<p><img alt="Arduino based autonomous car" src="https://cdn.instructables.com/ORIG/FJZ/WMJX/JH0TM5AR/FJZWMJXJH0TM5AR.jpg?auto=webp&amp;frame=1&amp;width=640&amp;height=480&amp;fit=bounds&amp;md=3c0d16be475260e77654ba49daa5f252" /></p>
+<p>This is a short collection of the links to study. Descriptions of these projects provides different level of details that's why we list several of them to demonstrate diversity of approaches:</p>
+<ul>
+<li>
+<p><a href="https://diyrobocars.com/2020/06/14/the-difference-between-proper-rc-cars-and-toys-when-youre-turning-them-into-robots/">Is your toy RC car is good to become autonomous robotics car?</a></p>
+</li>
+<li>
+<p><a href="https://create.arduino.cc/projecthub/GeekRex/turn-your-rc-car-to-bluetooth-rc-car-1b0689">A good start to turn an RC car to Arduino controlled car</a></p>
+</li>
+<li>
+<p><a href="https://makezine.com/projects/build-android-powered-autonomous-rc-car/">An example of equipping an RC car with sensors and Arduino controller</a></p>
+</li>
+<li>
+<p>Not sure how to start driving autonomously? Start with these fours simple turtle-like car based on Arduino: <a href="https://www.instructables.com/id/How-to-Build-Arduino-Self-Driving-Car">1</a>, <a href="https://trybotics.com/project/Self-Driving-Car-Using-Arduinoautonomous-Guided-Ve-29052">2</a>, <a href="https://project.seeedstudio.com/31926/arduino101-ble-autonomous-rover-2cb19f">3</a>, <a href="https://howtomechatronics.com/tutorials/arduino/arduino-robot-car-wireless-control-using-hc-05-bluetooth-nrf24l01-and-hc-12-transceiver-modules/">4</a></p>
+</li>
+<li>
+<p><a href="https://www.instructables.com/id/Autonomous-RC-Car/">Yet another DIY autonomous vehicles but pay attention on the powering</a></p>
+</li>
+</ul>
+<h2 id="vehicles-brain">Vehicle's brain</h2>
+<p>If this is the first time when you meet with <a href="https://en.wikipedia.org/wiki/Single-board_microcontroller">Single Board Microcontrollers</a> like Arduino or <a href="https://en.wikipedia.org/wiki/Single-board_computer">Single Board Computers</a> like Raspberry Pi, consider to spend extra time to understand the difference between them. For example, the goal of <a href="https://roboticsbackend.com/when-to-use-arduino-vs-raspberry-pi/">this article</a> to summarize advantages of SBM and SBC with advices when use Arduino, when Raspberry Pi and when both.</p>
+<p>Okay, hope the advantages are clear, and that is why it make sense to compare the Raspberry Pi with other SBCs:</p>
+<p><a href="https://youtu.be/G-w7ycyd8tA"><img alt="Raspberry Pi or another SBC?" src="https://img.youtube.com/vi/G-w7ycyd8tA/0.jpg" /></a></p>
+<p><em>Click on the picture to watch the video</em></p>
+<p>Another interesting approach could be is to use and integrated Computer Vision boards instead of SBC. <a href="https://diyrobocars.com/2018/06/05/comparing-three-low-cost-integrated-computer-vision-boards-for-autonomous-cars/">This material</a> compares OpenMV, Pixy and Jevois.</p>
+<p>Someone already decides to build the vehicle with two controllers: the primary controller is to execute navigation, path planning and work with a camera, the secondary is to requests sensors and/or control motors. Most probably the secondary controller will be an Arduino based and the following step is learn how it could be connected to the primary one. There are several protocols that can be used for this and <a href="https://dronebotworkshop.com/i2c-part-2-build-i2c-sensor/">this document</a> is good to start getting familiar with them.</p>
+<p>Next, depending on the protocol the following materials will help you implement communication channel between Raspberry Pi an Arduino:</p>
+<ul>
+<li>
+<p>Serial communication: <a href="https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/">1</a>, <a href="https://www.instructables.com/id/Connect-Your-Raspberry-Pi-and-Arduino-Uno/">2</a>, <a href="https://www.dummies.com/computers/raspberry-pi/connecting-the-raspberry-pi-and-the-arduino/">3</a>, <a href="https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/">4</a>.</p>
+</li>
+<li>
+<p>I2C communication: <a href="https://gonzalo123.com/2017/05/22/arduino-and-raspberry-pi-working-together-part-2-now-with-i2c/">1</a>, <a href="https://dronebotworkshop.com/i2c-arduino-raspberry-pi/">2</a>, <a href="https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/">3</a>.</p>
+</li>
+</ul>
+<h2 id="motors">Motors</h2>
+<p>The minimal number of motors that required for a vehicle participating in the Future Engineers competition is two: a driving motor and a motor to steer. </p>
+<ul>
+<li><a href="https://www.deviceplus.com/arduino/entry011/">Motor Basics</a></li>
+<li><a href="https://www.deviceplus.com/arduino/entry012/">Motor Driver</a></li>
+<li><a href="https://www.deviceplus.com/arduino/entry013/">Using a Servo Motor for the Steering</a></li>
+</ul>
+<p>The driving motor makes the car moving. This motors consumes more power than can be provided either by Arduino or by Raspberry Pi therefore an additional motor driver circuit is being used. Here are examples how to control DC motors from Arudino: <a href="https://howtomechatronics.com/tutorials/arduino/arduino-dc-motor-control-tutorial-l298n-pwm-h-bridge/">1</a>, <a href="https://dronebotworkshop.com/dc-motors-l298n-h-bridge/">2</a>, <a href="https://www.bc-robotics.com/tutorials/controlling-dc-motor-arduino/">3</a>; or from Raspberry Pi: <a href="https://maker.pro/raspberry-pi/projects/controlling-a-dc-motor-with-raspberry-pi4-1">1</a>.</p>
+<p>As an alternative to the DC motors, one could consider to use <a href="https://learn.adafruit.com/adafruit-arduino-lesson-16-stepper-motors/overview">a stepper motor</a> or <a href="https://cdn.sparkfun.com/assets/resources/4/4/servos_with_Arduino_slides.pdf">a continuous servomotor</a>.</p>
+<p>A servo motor is the most suitable way to change direction of the vehicle since it provides precise control on the steering process. Here are examples how to control DC motors from Arudino: <a href="https://howtomechatronics.com/how-it-works/how-servo-motors-work-how-to-control-servos-using-arduino/">1</a>, <a href="https://www.circuitbasics.com/controlling-servo-motors-with-arduino/">2</a>, <a href="https://dronebotworkshop.com/servo-motors-with-arduino/">3</a>, <a href="https://dronebotworkshop.com/analog-feedback-servo-motor/">4</a>; or from Raspberry Pi: <a href="https://maker.pro/raspberry-pi/tutorial/how-to-control-servo-motors-by-tilting-your-smartphone">1</a>.</p>
+<h3 id="encoders">Encoders</h3>
+<p>It is important to control the driving motor speed and the distance the vehicle is moving. One of the simplest device for this is an encoder:</p>
+<p><a href="https://www.youtube.com/watch?v=cLtMcqRetO0"><img alt="Tracking distance with encoder" src="https://img.youtube.com/vi/cLtMcqRetO0/0.jpg" /></a></p>
+<p><em>Click on the picture to watch the video</em></p>
+<p>These three articles will help you better understand how encoders work: <a href="https://www.seeedstudio.com/blog/2020/01/19/rotary-encoders-how-it-works-how-to-use-with-arduino/">1</a>, <a href="https://dronebotworkshop.com/rotary-encoders-arduino/">2</a>, <a href="https://www.instructables.com/id/How-to-Use-an-Rotary-Encoder-With-Arduino/">3</a>. </p>
+<p>And here are practical examples how an encoder can be added to the autonomous vehicle:</p>
+<ul>
+<li><a href="https://diyrobocars.com/2020/01/31/how-to-add-an-encoder-to-the-donkeycar-chassis/">Setup an encoder on a chassis</a></li>
+<li><a href="https://www.allaboutcircuits.com/projects/use-an-arduino-to-control-a-motor/">Use encoder built in the motor</a></li>
+</ul>
               
             </div>
           </div>
