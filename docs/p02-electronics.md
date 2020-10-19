@@ -96,3 +96,28 @@ And here are practical examples how an encoder can be added to the autonomous ve
 
   * [Setup an encoder on a chassis](https://diyrobocars.com/2020/01/31/how-to-add-an-encoder-to-the-donkeycar-chassis/)
   * [Use encoder built in the motor](https://www.allaboutcircuits.com/projects/use-an-arduino-to-control-a-motor/)
+
+## Distance sensors
+
+Distance and proximity sensors are commonly used in robotics. For the autonomous vehicle participating in the Future Engineers competition such kind of devices will allow to control the distance to the walls as so the car will move in the middle between them.
+
+Here is a set of short reviews of different sensors (ultrasonic, infrared and LiDAR) describing the principles how they work and which advantages and disadvantages they have: [1](https://diyprojects.io/hc-sr04-ultrasound-vs-sharp-gp2y0a02yk0f-ir-vl53l0x-laser-solutions-choose-distance-measurement-arduino-raspberrypi/#.XuUorJMzZp8), [2](https://www.seeedstudio.com/blog/2019/12/23/distance-sensors-types-and-selection-guide/), [3](https://www.learnrobotics.org/blog/ir-sensor-vs-ultrasonic-sensor/).
+
+## IMU
+
+IMU is an abbreviation for the term Inertial Measurement Unit. Usually, this abbreviation is used for a device that combines accelerometer, gyroscope and magnetometer. In order to get a useful data from this sensor, in most cases it is required to implement concepts from the linear algebra and calculus. But depending on the libraries provided by the sensor manufactures and/or open source community, this could be already simplified a lot as so the IMU sensor can be used to measure the path driven by the vehicle and to control steering smoothness.
+
+We provide links to three articles that are good start to understand how IMU can be used in a robotics projects: [1](https://maker.pro/arduino/tutorial/how-to-interface-arduino-and-the-mpu-6050-sensor), [2](https://www.seeedstudio.com/blog/2020/01/17/what-is-imu-sensor-overview-with-arduino-usage-guide/), [3](https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/).
+
+## Power
+
+Powering of the self-driving car for the robotics competition is not a trivial task. Depending on types of the motors and number of controllers, it could be found that separate power sources must be provided for different consumers.
+
+The materials below should allow you better understand approaches that can be used to power the controllers and motors:
+
+  * How to power the Arduino board: [1](https://thepihut.com/blogs/raspberry-pi-tutorials/how-do-i-power-my-arduino), [2](https://technobyte.org/2016/07/power-up-the-arduino-uno/)
+  * [How to power Raspberry Pi](https://thepihut.com/blogs/raspberry-pi-tutorials/how-do-i-power-my-raspberry-pi)
+  * [Powering Motors with Arduino](https://learn.adafruit.com/adafruit-motor-shield-v2-for-arduino/powering-motors)
+  * [Important note about the ground sharing](https://www.quora.com/Can-I-power-a-motor-driver-and-Arduino-with-separate-power-banks-I-am-using-two-12-V-motors)
+  * [Usage a power bank with Arduino and Motors](https://www.quora.com/Can-we-use-Arduino-Uno-and-4-DC-motors-with-a-power-bank-to-power-a-Bluetooth-robot)
+  * [Additional info to power the project](https://dronebotworkshop.com/powering-your-projects/)
