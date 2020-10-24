@@ -96,7 +96,6 @@ _The angle of view is 45 degrees:_
 
 ![POV, 45 degrees, height 100 mm, pitch 17](img/wro2020-fe-POV2-45d.gif)
 
-
 _The angle of view is 120 degrees:_
 
 ![POV, 120 degrees, height 100 mm, pitch 17](img/wro2020-fe-POV2-120d.gif)
@@ -113,13 +112,25 @@ Those who use Python and don't familiar with the OpenCV can learn essentials of 
 
 Below it will be presented a general pipeline that can be implemented as a base of the algorithm for participation in the Future Engineers competition.
 
-### Image de-nosing
+### Region of interest
 
 Consider that there is a following image of two objects: red and green cubes:
 
 ![Source image with cubes](img/fe-001-both.jpg)
 
-Even if one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform.
+Imagine the situation when we know in advance a distance which the object should be recognized on. If the object is located on the same plane where the vehicle is moving upon, it means that the bottom edge of the object's shape on the image could be expected approximately on the same rows of pixels.
+
+Bases on this fact, we can choose a region of the image to work only with it further. Since the region is less than entire image, the next image processing and an object detection will be performed faster.
+
+_Cropped image:_
+
+![Region of interest](img/fe-001-both-roi.png)
+
+Basic OpenCV operations with images are covered in [this tutorial](https://docs.opencv.org/master/d3/df2/tutorial_py_basic_ops.html){target=_blank}.
+
+### Image de-nosing
+
+Even if on the image above one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform (especially on the green object).
 
 _Red cube:_
 
@@ -129,14 +140,72 @@ _Green cube:_
 
 ![Source image with cubes](img/fe-001-zoom-green.png)
 
-Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.
+Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all; b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.
 
 That's why usually the images are smoothed to reduce gradations of the same color. The same process is used in the digital photography to reduce amount of digital noise on the image.
+
+_Smoothed image:_
 
 ![Smoothed image with cubes](img/fe-001-both-median.png)
 
 How to implement smoothing with OpenCV can be read [here](https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html){target=_blank}.
 
 ### Thresholding
+
+Thresholding is a way to find such pixels on an image that correspond some properties. Depending on the color scheme used to encode the image the property of the pixel can be its color. 
+
+For example, the widely used RGB color scheme allows to say how much red, green or blue component is contained in a pixel. The completely white pixel contains maximum of red, green and blue colors. The completely black pixel contains no red, green and blue colors at all.
+
+So, someone could assume that if we need to discover a red object on the image, we need to look at the red component of each pixel and if it is maximum the pixel is belonged to a red object. But it is not true.
+
+Let's look on the red components of the pixels in the image:
+
+![Red component](img/fe-001-r-comp.png)
+
+Here the most bright pixels correspond to the maximum of the red component. As you can see lots of pixels have maximum in th red component. Why? Recall that the red component of a white pixel is the highest possible.
+
+In fact, it is more logical to look at the pixels where the red component is maximum and the blue and green components are on the lowest values. 
+
+_Green component:_
+
+![Green component](img/fe-001-g-comp.png)
+
+_Blue component:_
+
+![Blue component](img/fe-001-b-comp.png)
+
+But this leads to nontrivial logic to implement threshold which will become even more complicated if the light condition are being changed.
+
+That is why it makes sense to use another color scheme which is more suitable for color recognition. This scheme is called [HSV (Hue+Saturation+Value)](https://en.wikipedia.org/wiki/HSL_and_HSV){target=_blank}. The color of the pixel is encoded by the Hue component. The changing light conditions will not affect the Hue component but are reflected in the Saturation and Value components.
+
+Here is how the image looks like if HSV components are separated (the most bright pixels correspond to the highest value of the component):
+
+_Hue component:_
+
+![Hue component](img/fe-001-h-comp.png)
+
+_Saturation component:_
+
+![Saturation component](img/fe-001-s-comp.png)
+
+_Value component:_
+
+![Value component](img/fe-001-v-comp.png)
+
+So if we know the range that corresponds to some color in the Hue component we can filter out all pixels within this range.
+
+The OpenCV library allows to generate a binary representation of the image where the black pixels correspond to the original image's pixels that are outside of the range. This representation is also called the "mask".
+
+_The mask for the red object:_
+
+![Red object mask](img/fe-001-mask-red.png)
+
+_The mask for the green object:_
+
+![Green object mask](img/fe-001-mask-green.png)
+
+The example of the filtering out the pixels in the HSV color scheme can be found in [this article](https://docs.opencv.org/master/df/d9d/tutorial_py_colorspaces.html){target=_blank}.
+
+### Center of mass
 
 TBD
