@@ -78,9 +78,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#objects-recognition">Objects recognition</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#region-of-interest">Region of interest</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#image-de-nosing">Image de-nosing</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#thresholding">Thresholding</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#center-of-mass">Center of mass</a>
     </li>
         </ul>
     </li>
@@ -180,19 +184,54 @@
 <p>A convenient way for beginners to start getting familiar with the computer vision approaches is to work with <a href="https://en.wikipedia.org/wiki/OpenCV" target="_blank">the OpenCV library</a>. This library has bindings for almost all popular programming languages.</p>
 <p>Those who use Python and don't familiar with the OpenCV can learn essentials of the library through <a href="https://docs.opencv.org/master/d6/d00/tutorial_py_root.html" target="_blank">the official tutorials</a>.  </p>
 <p>Below it will be presented a general pipeline that can be implemented as a base of the algorithm for participation in the Future Engineers competition.</p>
-<h3 id="image-de-nosing">Image de-nosing</h3>
+<h3 id="region-of-interest">Region of interest</h3>
 <p>Consider that there is a following image of two objects: red and green cubes:</p>
 <p><img alt="Source image with cubes" src="../img/fe-001-both.jpg" /></p>
-<p>Even if one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform.</p>
+<p>Imagine the situation when we know in advance a distance which the object should be recognized on. If the object is located on the same plane where the vehicle is moving upon, it means that the bottom edge of the object's shape on the image could be expected approximately on the same rows of pixels.</p>
+<p>Bases on this fact, we can choose a region of the image to work only with it further. Since the region is less than entire image, the next image processing and an object detection will be performed faster.</p>
+<p><em>Cropped image:</em></p>
+<p><img alt="Region of interest" src="../img/fe-001-both-roi.png" /></p>
+<p>Basic OpenCV operations with images are covered in <a href="https://docs.opencv.org/master/d3/df2/tutorial_py_basic_ops.html" target="_blank">this tutorial</a>.</p>
+<h3 id="image-de-nosing">Image de-nosing</h3>
+<p>Even if on the image above one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform (especially on the green object).</p>
 <p><em>Red cube:</em></p>
 <p><img alt="Source image with cubes" src="../img/fe-001-zoom-red.png" /></p>
 <p><em>Green cube:</em></p>
 <p><img alt="Source image with cubes" src="../img/fe-001-zoom-green.png" /></p>
-<p>Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.</p>
+<p>Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all; b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.</p>
 <p>That's why usually the images are smoothed to reduce gradations of the same color. The same process is used in the digital photography to reduce amount of digital noise on the image.</p>
+<p><em>Smoothed image:</em></p>
 <p><img alt="Smoothed image with cubes" src="../img/fe-001-both-median.png" /></p>
 <p>How to implement smoothing with OpenCV can be read <a href="https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html" target="_blank">here</a>.</p>
 <h3 id="thresholding">Thresholding</h3>
+<p>Thresholding is a way to find such pixels on an image that correspond some properties. Depending on the color scheme used to encode the image the property of the pixel can be its color. </p>
+<p>For example, the widely used RGB color scheme allows to say how much red, green or blue component is contained in a pixel. The completely white pixel contains maximum of red, green and blue colors. The completely black pixel contains no red, green and blue colors at all.</p>
+<p>So, someone could assume that if we need to discover a red object on the image, we need to look at the red component of each pixel and if it is maximum the pixel is belonged to a red object. But it is not true.</p>
+<p>Let's look on the red components of the pixels in the image:</p>
+<p><img alt="Red component" src="../img/fe-001-r-comp.png" /></p>
+<p>Here the most bright pixels correspond to the maximum of the red component. As you can see lots of pixels have maximum in th red component. Why? Recall that the red component of a white pixel is the highest possible.</p>
+<p>In fact, it is more logical to look at the pixels where the red component is maximum and the blue and green components are on the lowest values. </p>
+<p><em>Green component:</em></p>
+<p><img alt="Green component" src="../img/fe-001-g-comp.png" /></p>
+<p><em>Blue component:</em></p>
+<p><img alt="Blue component" src="../img/fe-001-b-comp.png" /></p>
+<p>But this leads to nontrivial logic to implement threshold which will become even more complicated if the light condition are being changed.</p>
+<p>That is why it makes sense to use another color scheme which is more suitable for color recognition. This scheme is called <a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV (Hue+Saturation+Value)</a>. The color of the pixel is encoded by the Hue component. The changing light conditions will not affect the Hue component but are reflected in the Saturation and Value components.</p>
+<p>Here is how the image looks like if HSV components are separated (the most bright pixels correspond to the highest value of the component):</p>
+<p><em>Hue component:</em></p>
+<p><img alt="Hue component" src="../img/fe-001-h-comp.png" /></p>
+<p><em>Saturation component:</em></p>
+<p><img alt="Saturation component" src="../img/fe-001-s-comp.png" /></p>
+<p><em>Value component:</em></p>
+<p><img alt="Value component" src="../img/fe-001-v-comp.png" /></p>
+<p>So if we know the range that corresponds to some color in the Hue component we can filter out all pixels within this range.</p>
+<p>The OpenCV library allows to generate a binary representation of the image where the black pixels correspond to the original image's pixels that are outside of the range. This representation is also called the "mask".</p>
+<p><em>The mask for the red object:</em></p>
+<p><img alt="Red object mask" src="../img/fe-001-mask-red.png" /></p>
+<p><em>The mask for the green object:</em></p>
+<p><img alt="Green object mask" src="../img/fe-001-mask-green.png" /></p>
+<p>The example of the filtering out the pixels in the HSV color scheme can be found in <a href="https://docs.opencv.org/master/df/d9d/tutorial_py_colorspaces.html" target="_blank">this article</a>.</p>
+<h3 id="center-of-mass">Center of mass</h3>
 <p>TBD</p>
               
             </div>
