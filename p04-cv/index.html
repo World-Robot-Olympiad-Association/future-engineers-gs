@@ -77,6 +77,12 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#objects-recognition">Objects recognition</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#image-de-nosing">Image de-nosing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#thresholding">Thresholding</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -171,6 +177,22 @@
 <p><img alt="POV, 120 degrees, height 100 mm, pitch 17" src="../img/wro2020-fe-POV2-120d.gif" /></p>
 <p>In both cases the vehicle drove almost the same path, the camera was fixed on the height 100mm and the pitch was 17 mm, but you can see that in the second case the camera perceives more information so the algorithm could discover the walls, perform early detection of the colored cube and track the cube until it is fully passed.</p>
 <h2 id="objects-recognition">Objects recognition</h2>
+<p>A convenient way for beginners to start getting familiar with the computer vision approaches is to work with <a href="https://en.wikipedia.org/wiki/OpenCV" target="_blank">the OpenCV library</a>. This library has bindings for almost all popular programming languages.</p>
+<p>Those who use Python and don't familiar with the OpenCV can learn essentials of the library through <a href="https://docs.opencv.org/master/d6/d00/tutorial_py_root.html" target="_blank">the official tutorials</a>.  </p>
+<p>Below it will be presented a general pipeline that can be implemented as a base of the algorithm for participation in the Future Engineers competition.</p>
+<h3 id="image-de-nosing">Image de-nosing</h3>
+<p>Consider that there is a following image of two objects: red and green cubes:</p>
+<p><img alt="Source image with cubes" src="../img/fe-001-both.jpg" /></p>
+<p>Even if one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform.</p>
+<p><em>Red cube:</em></p>
+<p><img alt="Source image with cubes" src="../img/fe-001-zoom-red.png" /></p>
+<p><em>Green cube:</em></p>
+<p><img alt="Source image with cubes" src="../img/fe-001-zoom-green.png" /></p>
+<p>Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.</p>
+<p>That's why usually the images are smoothed to reduce gradations of the same color. The same process is used in the digital photography to reduce amount of digital noise on the image.</p>
+<p><img alt="Smoothed image with cubes" src="../img/fe-001-both-median.png" /></p>
+<p>How to implement smoothing with OpenCV can be read <a href="https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html" target="_blank">here</a>.</p>
+<h3 id="thresholding">Thresholding</h3>
 <p>TBD</p>
               
             </div>
