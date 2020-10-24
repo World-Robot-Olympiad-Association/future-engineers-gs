@@ -105,4 +105,38 @@ In both cases the vehicle drove almost the same path, the camera was fixed on th
 
 ## Objects recognition
 
+A convenient way for beginners to start getting familiar with the computer vision approaches is to work with [the OpenCV library](https://en.wikipedia.org/wiki/OpenCV){target=_blank}. This library has bindings for almost all popular programming languages.
+
+
+Those who use Python and don't familiar with the OpenCV can learn essentials of the library through [the official tutorials](https://docs.opencv.org/master/d6/d00/tutorial_py_root.html){target=_blank}.  
+
+
+Below it will be presented a general pipeline that can be implemented as a base of the algorithm for participation in the Future Engineers competition.
+
+### Image de-nosing
+
+Consider that there is a following image of two objects: red and green cubes:
+
+![Source image with cubes](img/fe-001-both.jpg)
+
+Even if one object looks red and another one looks green, a small zoom will demonstrate that the colors are not uniform.
+
+_Red cube:_
+
+![Source image with cubes](img/fe-001-zoom-red.png)
+
+_Green cube:_
+
+![Source image with cubes](img/fe-001-zoom-green.png)
+
+Bearing in mind that the color on the digital images is represented by a set of numbers, if we specify some specific color we cannot expect that a) either this color exists on the image at all b) or we can find enough amount of pixels of this color to say for sure that there is an object of this color on the image.
+
+That's why usually the images are smoothed to reduce gradations of the same color. The same process is used in the digital photography to reduce amount of digital noise on the image.
+
+![Smoothed image with cubes](img/fe-001-both-median.png)
+
+How to implement smoothing with OpenCV can be read [here](https://docs.opencv.org/master/d4/d13/tutorial_py_filtering.html){target=_blank}.
+
+### Thresholding
+
 TBD
