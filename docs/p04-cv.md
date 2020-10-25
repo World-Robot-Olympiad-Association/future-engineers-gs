@@ -206,16 +206,65 @@ _The mask for the green object:_
 
 The example of the filtering out the pixels in the HSV color scheme can be found in [this article](https://docs.opencv.org/master/df/d9d/tutorial_py_colorspaces.html){target=_blank}.
 
+In some cases it can be found that even if smoothing was applied to the image before thresholding the result (the mask) is still not solid like the mask for the red object on the image above. In this case, one could consider to use one of the morphological transformations to enhance the mask.
+
+For example, if the transformation "dilation followed by erosion" (also known as Closing) are applied to the red object's mask, the amount of "holes" inside of the mask can be reduced:
+
+![Closing for the red object mask](img/fe-001-red-closing.png)
+
+Note that additional transformation will slow down the overall process of the objects recognition so use it only in case when smoothing plus thresholding do not return good results.
+
+More details about the morphological transformations can be found in [the corresponding part of the OpenCV documentation](https://docs.opencv.org/master/d9/d61/tutorial_py_morphological_ops.html){target=_blank}.
+
 ### Center of an object (centroid)
+
+The useful result of having the mask for an object on the image is that the contour of the object becomes unambiguously detectable. 
 
 ![Red object contours](img/fe-001-red-contours.png)
 
+Even if by some reason on the mask there are more than one contour they can be sorted by their areas so the contour with the max area will later considered as the target for the algorithm.
+
 ![Green object contours](img/fe-001-green-contours.png)
+
+And as soon as the contour is known, the pixels within the contour could be used for different purposes. The usage of an object's pixels information to identify the properties of the objects is called [the image moment](https://en.wikipedia.org/wiki/Image_moment){target=_blank}.
+
+For example, if you accumulate `X` coordinates of all pixels belonging to an object and divide the result by the total number of pixels (area) in this object, you will get an average `X` coordinate. If you do the same for the `Y` coordinates, eventually you will get the center of the object (centroid).
+
+_The Y coordinate of the red object centroid:_
 
 ![Red object centroid](img/fe-001-red-centroid.png)
 
+_The Y coordinate of the green object centroid:_
+
 ![Green object centroid](img/fe-001-green-centroid.png)
 
-OpenCV Contours: https://docs.opencv.org/master/d3/d05/tutorial_py_table_of_contents_contours.html
+The `Y` coordinate of the centroid is useful to track the position of the object with respect to the vehicle in the Future Engineers competition. If the object is green and its `Y` coordinate is in the left side of the frame, the vehicle must perform a maneuver to the left as so the centroid of the green object is measured closer to the right side of the next frame.
 
 ![FE game objects tracking](img/fe-001-tracking.gif)
+
+The following tutorials will help to understand how contours could be detected with the OpenCV library and how center of the objects can be received from the contours:
+
+  * [OpenCV center of contour](https://www.pyimagesearch.com/2016/02/01/opencv-center-of-contour/){target=_blank}
+  * [Ball Tracking with OpenCV](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/){target=_blank}
+
+
+There is [a big section in the OpenCV documentation dedicated for the image contours](https://docs.opencv.org/master/d3/d05/tutorial_py_table_of_contents_contours.html){target=_blank} and operations with them:
+
+
+## Lane detection 
+
+Some of techniques described above can be used to detect the black walls surrounding the track. It means that the vehicle can use the camera not only to detect the green and red objects but also to detect the lane and adjust the steering mechanism correspondingly to drive in the middle of the lane.
+
+Here are two articles that cover in details how to implement either [the lane following](https://towardsdatascience.com/deeppicar-part-4-lane-following-via-opencv-737dd9e47c96){target=_blank} (but when the lane is marked by the tape) or [the line following](https://becominghuman.ai/autonomous-racing-robot-with-an-arduino-a-raspberry-pi-and-a-pi-camera-3e72819e1e63){target=_blank}. These articles are also useful since demonstrate how to solve the task on the hardware that is similar to the equipment allowed to be used in the Future Engineers competition.
+
+
+## Performance improvements 
+
+The operation to read a frame from a camera could quite costly from performance perspective as per the nature of the I/O (input/output) layer implementation. Imagine, when the frame is being received by the OpenCV library from the camera the rest of your code just waits. That is why it seems reasonable to divide the program at least on two parts working in parallel: one will read new frames, another will process appearing frames. Such parts of the program are called threads. And this tutorial explains [how the performance of the image processing program can be improved with usage of threads](https://www.pyimagesearch.com/2015/12/21/increasing-webcam-fps-with-python-and-opencv/){target=_blank}.
+
+### Intellectual cameras
+
+Another approach to allow your code performs only "useful" action is to delegate the frames collection and, probably, some initial processing to a separate controller. That is why the idea to use intellectual cameras that could be considered as combination of such controller plus a camera looks smart enough.
+
+Here is links to [the wiki pages](https://docs.pixycam.com/wiki/doku.php?id=wiki:v2:start){target=_blank} of [PixyCam v2](https://dronebotworkshop.com/pixy2-camera/){target=_blank} and [the documentation for OpenMVCam](https://docs.openmv.io/openmvcam/quickref.html){target=_blank}.
+
