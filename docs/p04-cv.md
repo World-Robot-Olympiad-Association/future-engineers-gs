@@ -206,6 +206,16 @@ _The mask for the green object:_
 
 The example of the filtering out the pixels in the HSV color scheme can be found in [this article](https://docs.opencv.org/master/df/d9d/tutorial_py_colorspaces.html){target=_blank}.
 
-### Center of mass
+### Center of an object (centroid)
 
-TBD
+![Red object contours](img/fe-001-red-contours.png)
+
+![Green object contours](img/fe-001-green-contours.png)
+
+![Red object centroid](img/fe-001-red-centroid.png)
+
+![Green object centroid](img/fe-001-green-centroid.png)
+
+OpenCV Contours: https://docs.opencv.org/master/d3/d05/tutorial_py_table_of_contents_contours.html
+
+![FE game objects tracking](img/fe-001-tracking.gif)
