@@ -6,7 +6,7 @@ The WRO Future Engineers is the competition of the self-driven vehicles. Student
 
 More details about the competition can be found on [the official site of WRO Association](https://wro-association.org/competition/new-competition-formats/future-engineers).
 
-<img src="docs/img/fe-map.png" width="1024">
+<img src="docs/img/fe-map.png" width="640">
 
 The materials are intended to be build with the [Mkdocs](https://www.mkdocs.org/) site generator.
 
