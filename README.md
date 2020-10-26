@@ -11,3 +11,5 @@ More details about the competition can be found on [the official site of WRO Ass
 The materials are intended to be build with the [Mkdocs](https://www.mkdocs.org/) site generator.
 
 The example of the site is available by https://akolotov.github.io/future-engineers-gs/.
+
+_If you have any suggestions or found some bugs/inconsistencies please report them in form of [the GitHub issue](https://github.com/akolotov/future-engineers-gs/issues/new)._

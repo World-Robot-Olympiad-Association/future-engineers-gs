@@ -1,6 +1,6 @@
 ---
 title: How to program
-summary: Basics of programming SBM and SBC
+summary: Basics of SBM and SBC programming
 authors:
     - Alexander Kolotov
 ---
