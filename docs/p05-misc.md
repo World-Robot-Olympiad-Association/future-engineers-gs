@@ -22,5 +22,7 @@ This section contains the links on other useful materials that could help with t
 
   * [Another article](https://www.hackster.io/SQLCodeMonkey/raspberry-pi-autonomous-rc-car-a666a4){target=_blank} covering how to transfor a toy RC car to be autonomously controlled by the Raspberry Pi board.
 
+  * [Detailed description](https://github.com/NVIDIA-AI-IOT/jetracer/blob/master/docs/latrax/hardware_setup.md){target=_blank} how to assemble a self-driven car from Traxxas LaTrax Rally 1/18 4WD and NVIDIA Jetson Nano. Someone could also find useful to consider [a review of hardware costs](https://github.com/NVIDIA-AI-IOT/jetracer/blob/master/docs/latrax/bill_of_materials.md){target=_blank} required for this project in order to see which materials can be used in similar projects.
+
   * [A GitHub repo](https://github.com/multunus/autonomous-rc-car){target=_blank} providing materials to control a RC car autonomously by using Raspberry Pi and Neural Networks.
 
