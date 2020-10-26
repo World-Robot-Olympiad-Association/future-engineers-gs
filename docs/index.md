@@ -21,4 +21,4 @@ This site covers the following topics:
 
 Enhoy with getting new knowledge and skills!
 
-_This site was generated from the content located in the GitHub repository: [https://github.com/akolotov/future-engineers-gs/](https://github.com/World-Robot-Olympiad-Association/future-engineers-gs){target=_blank}. If you have any suggestions or found some bugs/inconsistencies please report them in form of [the GitHub issue](https://github.com/World-Robot-Olympiad-Association/future-engineers-gs/issues/new){target=_blank}._
+_This site was generated from the content located in the GitHub repository: [https://github.com/World-Robot-Olympiad-Association/future-engineers-gs](https://github.com/World-Robot-Olympiad-Association/future-engineers-gs){target=_blank}. If you have any suggestions or found some bugs/inconsistencies please report them in form of [the GitHub issue](https://github.com/World-Robot-Olympiad-Association/future-engineers-gs/issues/new){target=_blank}._
