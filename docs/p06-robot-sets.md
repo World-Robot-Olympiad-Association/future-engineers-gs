@@ -16,6 +16,10 @@ Below is the list of set that one could consider to use either as a base to buil
 
   * [MATRIX Mini Starter Robot Kit](https://matrixrobotics.com/product/matrix-mini-starter-robot-kit/){target=_blank} and [the Pixy2 camera](https://pixycam.com/pixy2/){target=_blank}.
 
+  * LEGO Education SPIKE Prime with OpenMV camera. [Here](https://www.instructables.com/Backpack-1-OpenMV-Camera/){target=_blank} is instructions to connect these devices together . After that it will require to deploy a special library to the OpenMV camera -- see examples [here](https://github.com/ceeoinnovations/SPIKEPrimeBackpacks/tree/master/examples){target=_blank}.
+
   * [MakeBlock Ultimate 2.0 Kit](https://education.makeblock.com/ultimate-2/) and Raspberry Pi with a camera.
 
   * [CViC](http://makely.tech/cvic){target=_blank} - a set for participation in the autonomous cars competitions for school students.
+
+  * [LEGO EV3 Computer Vision Add-on](http://ev3cv.robitware.ru/){target=_blank} - an extension kit allowing to connect RaspberryPI and EV3 by UART.
