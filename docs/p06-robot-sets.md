@@ -6,9 +6,9 @@ authors:
 ---
 # Robot sets
 
-Below is the list of set that one could consider to use either as a base to build a vehicle for the Future Engineers competition or as a model to learn and practise skills to participate in the competition. 
+Below is the list of sets that one could consider to use either as a base to build a vehicle for the Future Engineers competition or as a model to learn and practise skills to participate in the competition.
 
-  * [SunFounder PiCar-V Kit V2](https://www.sunfounder.com/picar-v.html){target=_blank}. Pay attention that there are two DC motors driving the vehicle - this is not allowed by the competition rules.
+  * [SunFounder PiCar-V Kit V2](https://www.sunfounder.com/picar-v.html){target=_blank}. Pay attention to the fact that there are two DC motors driving the vehicle - this is not allowed by the competition rules.
 
   * LEGO Mindstorms EV3 and Raspbery Pi with a camera. One of the possible ways to [connect them is by BlueTooth](http://www.abrowndesign.com/2018/10/25/sending-bluetooth-messages-from-raspberry-pi-to-lego-ev3-stock-firmware/){target=_blank} but don't use this way for the competition.
 
@@ -18,7 +18,7 @@ Below is the list of set that one could consider to use either as a base to buil
 
   * LEGO Education SPIKE Prime with OpenMV camera. [Here](https://www.instructables.com/Backpack-1-OpenMV-Camera/){target=_blank} is instructions to connect these devices together . After that it will require to deploy a special library to the OpenMV camera -- see examples [here](https://github.com/ceeoinnovations/SPIKEPrimeBackpacks/tree/master/examples){target=_blank}.
 
-  * [MakeBlock Ultimate 2.0 Kit](https://education.makeblock.com/ultimate-2/) and Raspberry Pi with a camera.
+  * [MakeBlock Ultimate 2.0 Kit](https://education.makeblock.com/ultimate-2/){target=_blank} and Raspberry Pi with a camera.
 
   * [CViC](http://makely.tech/cvic){target=_blank} - a set for participation in the autonomous cars competitions for school students.
 
