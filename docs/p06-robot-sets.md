@@ -8,7 +8,7 @@ authors:
 
 Below is the list of sets that one could consider to use either as a base to build a vehicle for the Future Engineers competition or as a model to learn and practise skills to participate in the competition.
 
-  * [SunFounder PiCar-V Kit V2](https://www.sunfounder.com/picar-v.html){target=_blank}. Pay attention to the fact that there are two DC motors driving the vehicle - this is not allowed by the competition rules.
+  * [SunFounder PiCar-V Kit V2](https://www.sunfounder.com/products/smart-video-car){target=_blank}. Pay attention to the fact that there are two DC motors driving the vehicle - this is not allowed by the competition rules.
 
   * LEGO Mindstorms EV3 and Raspbery Pi with a camera. One of the possible ways to [connect them is by BlueTooth](http://www.abrowndesign.com/2018/10/25/sending-bluetooth-messages-from-raspberry-pi-to-lego-ev3-stock-firmware/){target=_blank} but don't use this way for the competition.
 
