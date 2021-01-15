@@ -22,4 +22,4 @@ Below is the list of sets that one could consider to use either as a base to bui
 
   * [CViC](http://makely.tech/cvic){target=_blank} - a set for participation in the autonomous cars competitions for school students.
 
-  * [LEGO EV3 Computer Vision Add-on](http://ev3cv.robitware.ru/){target=_blank} - an extension kit allowing to connect RaspberryPI and EV3 by UART.
+  * [LEGO EV3 Computer Vision Add-on](http://ev3cv.robitware.ru/){target=_blank} - an extension kit allowing to connect RaspberryPI and EV3 by I2C.
