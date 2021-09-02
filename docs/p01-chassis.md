@@ -24,9 +24,9 @@ More videos referenced in the next list consider other approaches to achieve the
 
 Once you get a basic understanding of what your vehicle could look like, you can look at the following instructions which could help you to think of the assembling process in more professional manner:
 
-[![SunFounder PiCar-V Kit V2.0](img/sunfounder.png)](https://www.sunfounder.com/learn/category/raspberrypi-picar-v-v2.html){target=_blank}
+[![SunFounder PiCar-V Kit V2.0](img/sunfounder.png)](https://docs.sunfounder.com/projects/picar-v/en/latest/building_the_car.html){target=_blank}
 
-_Click on the picture or [here](https://www.sunfounder.com/learn/category/raspberrypi-picar-v-v2.html) to download the instructions._
+_Click on the picture or [here](https://docs.sunfounder.com/projects/picar-v/en/latest/building_the_car.html) to read the instructions._
 
 Note that some instructions above use two motors to rotate the rear wheels. In some cases it will make the control of the vehicle more complex, since the motors could rotate asynchronously, and that needs to be compensated for in the steering.
 

@@ -2,7 +2,7 @@
 
 Starting from the 2020 season [World Robot Olympiad](https://wro-association.org/association/introduction){target=_blank} is expanding the set of competitions offered for students around the world by adding a new competition: "Future Engineers".
 
-The WRO Future Engineers category is a self driving car competition. Students ages 15 to 19 will design a model car, equip it with electromechanical components, and program it so it will be able to autonomously drive on a track and avoid obstacles.
+The WRO Future Engineers category is a self driving car competition. Students ages 14 to 19 will design a model car, equip it with electromechanical components, and program it so it will be able to autonomously drive on a track and avoid obstacles.
 
 ![FE competition field](img/fe-map.png)
 
